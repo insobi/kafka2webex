@@ -2,7 +2,7 @@ from webexteamssdk import WebexTeamsAPI
 import configparser
 
 config = configparser.ConfigParser()
-config.read('webex.properties')
+config.read('sample.properties')
 
 WEBEX_TEAMS_ACCESS_TOKEN = config['WEBEX']['ACCESS_TOKEN']
 WEBEX_TEAMS_ROOM_ID = config['WEBEX']['ROOM_ID']
