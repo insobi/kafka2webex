@@ -1,1 +1,2 @@
 webexteamssdk
+confluent_kafka
