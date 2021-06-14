@@ -2,7 +2,7 @@
 This repository is an example to integrate both Apache Kafka and Cisco Webex Teams.
 <br><br>
 
-# prerequisites
+# Prerequisites
 - Webex Teams Account & Access Token
 - Webex Teams Room
 <br><br>
