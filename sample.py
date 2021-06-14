@@ -1,16 +1,30 @@
 from webexteamssdk import WebexTeamsAPI
+import configparser
 
-# Import from environment variable
-WEBEX_TEAMS_ACCESS_TOKEN = "NWE0NDBkNTItYjUzYy00ZGRmLWFhOGItNjhiNDBkNTRiNmZmYzhkNzZlNjAtYWMy_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f"
-ROOM_ID="Y2lzY29zcGFyazovL3VzL1JPT00vOGZjYTVlOTAtNWZmNi0xMWViLWI3OTYtZDU3ZWIzN2E0NWFi"
+config = configparser.ConfigParser()
+config.read('sample.properties')
+
+WEBEX_TEAMS_ACCESS_TOKEN = config['WEBEX']['ACCESS_TOKEN']
+WEBEX_TEAMS_ROOM_ID = config['WEBEX']['ROOM_ID']
+
+MESSAGE = "Hello World!"
+
+MARKDOWN = """
+# Test Message
+This is a sample message sent by webexteamssdk. Please refer to [this repo](https://github.com/insobi/kafka2webex).
+<br>
+## How to Run
+```
+python sample.py
+```
+
+## Markdown Example
+- Buy a new shirt.
+  * With buttons.
+    * And a collar!
+"""
 
 api = WebexTeamsAPI(access_token=WEBEX_TEAMS_ACCESS_TOKEN)
 
-# get list of rooms
-rooms = api.rooms.list()
-for room in rooms:
-    print(room.title)
-    print(room.id)
-    print("---")
-
-message = api.messages.create(ROOM_ID, text="sended by kafka2webex...")
+message = api.messages.create(WEBEX_TEAMS_ROOM_ID, text=MESSAGE)
+message = api.messages.create(WEBEX_TEAMS_ROOM_ID, markdown=MARKDOWN)
